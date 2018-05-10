@@ -1,27 +1,27 @@
 // =----------------------------------------------------------=
 // =                           AVISO:                         =
 // =                   MODIFIQUE ESTE ARQUIVO!                =
-// = Aqui, vocÍ deve implementar, obrigatoriamente, essas     =
-// = duas funÁıes:                                            =
+// = Aqui, voc√™ deve implementar, obrigatoriamente, essas     =
+// = duas fun√ß√µes:                                            =
 // =     - `a_menor_que_b`: deve retornar quando uma string   =
-// =        È menor que a outra (ambos com o mesmo tamanho);  =
-// =     - `external_sort`: aqui, vocÍ dever· implementar o   =
+// =        √© menor que a outra (ambos com o mesmo tamanho);  =
+// =     - `external_sort`: aqui, voc√™ dever√° implementar o   =
 // =        seu trabalho. Ordene os registros em `input_file` =
 // =        e escreva-os em `output_file`, usando somente     =
-// =        `memory` KB de memÛria.                           =
+// =        `memory` KB de mem√≥ria.                           =
 // =                                                          =
-// = InstruÁıes:                                              =
-// =     - use a funÁ„o `mathias_malloc` ao invÈs de          =
+// = Instru√ß√µes:                                              =
+// =     - use a fun√ß√£o `mathias_malloc` ao inv√©s de          =
 // =       `malloc`;                                          =
-// =     - use a funÁ„o `mathias_free` ao invÈs de `free`;    =
-// =     - lembre-se que vocÍ tem somente `memory` KB de      =
-// =       memÛria;                                           =
-// =     - note que a sua implementaÁ„o de `a_menor_que_b`    =
-// =       afetar· o resultado da verificaÁ„o da resposta.    =
+// =     - use a fun√ß√£o `mathias_free` ao inv√©s de `free`;    =
+// =     - lembre-se que voc√™ tem somente `memory` KB de      =
+// =       mem√≥ria;                                           =
+// =     - note que a sua implementa√ß√£o de `a_menor_que_b`    =
+// =       afetar√° o resultado da verifica√ß√£o da resposta.    =
 // =                                                          =
 // = Dicas:                                                   =
-// =     - vocÍ pode usar a sua funÁ„o `a_menor_que_b` em     =
-// =       sua implementaÁ„o da funÁ„o `external_sort`;       =
+// =     - voc√™ pode usar a sua fun√ß√£o `a_menor_que_b` em     =
+// =       sua implementa√ß√£o da fun√ß√£o `external_sort`;       =
 // =                                                          =
 // =                      BOM TRABALHO!                       =
 // =----------------------------------------------------------=
@@ -32,14 +32,14 @@
 #include <string.h>
 #include "mem.h"
 
-// Par‚metros:
+// Par√¢metros:
 //     - a: uma cadeia de caracteres de tamanho `len`;
 //     - b: uma cadeia de caracteres de tamanho `len`;
 //     - len: o tamanho (quantidade de bytes) de `a` e `b`.
-// Essa funÁ„o deve retornar 1, se `a` È menor que `b` (`a` deve vir antes de `b` no
-// arquivo), e 0 caso contr·rio.
-// Ela tambÈm È usada para verificaÁ„o da ordenaÁ„o! Ent„o, se vocÍ implement·-la
-// erroneamente, a verificaÁ„o tambÈm estar· errada!
+// Essa fun√ß√£o deve retornar 1, se `a` √© menor que `b` (`a` deve vir antes de `b` no
+// arquivo), e 0 caso contr√°rio.
+// Ela tamb√©m √© usada para verifica√ß√£o da ordena√ß√£o! Ent√£o, se voc√™ implement√°-la
+// erroneamente, a verifica√ß√£o tamb√©m estar√° errada!
 int a_menor_que_b(char* a, char* b, int len)
 {
     int i;
@@ -106,15 +106,15 @@ void CriaBlocosOrdenados(char **registros, unsigned int memDisponivel, int numCh
 
     fgets(aux, numChars+2, inputFile); //Pula um \n
 
-   // while(fscanf(inputFile,"%[^\n]s",registros[j]) != EOF) //Enquanto n„o terminar de ler o arquivo original
+   // while(fscanf(inputFile,"%[^\n]s",registros[j]) != EOF) //Enquanto n√£o terminar de ler o arquivo original
     while(fgets(registros[j], numChars+2, inputFile) != NULL)
     {
-        if(i >= numCaminhos)   //Verifica se escreveu em todas as fitas disponÌveis para a criaÁ„o inicial dos blocos
+        if(i >= numCaminhos)   //Verifica se escreveu em todas as fitas dispon√≠veis para a cria√ß√£o inicial dos blocos
         {
-            i=0;               //Se j·, ent„o comeÁa a escrever de volta na primeira fita
+            i=0;               //Se j√°, ent√£o come√ßa a escrever de volta na primeira fita
         }
 
-        for(j=1; j<memDisponivel; j++)   //Le os n-1 registros restantes, onde n È a quantidade de registros que cabe em RAM
+        for(j=1; j<memDisponivel; j++)   //Le os n-1 registros restantes, onde n √© a quantidade de registros que cabe em RAM
         {
  //           if(fscanf(inputFile,"%[^\n]s",aux) != EOF)
             if(fgets(aux, numChars+2, inputFile) != NULL)
@@ -139,7 +139,7 @@ void CriaBlocosOrdenados(char **registros, unsigned int memDisponivel, int numCh
             }
         }
 
-        i++;   //AvanÁa para a prÛxima fita
+        i++;   //Avan√ßa para a pr√≥xima fita
         j=0;   //Rebobina o vetor
     }
 }
@@ -196,13 +196,7 @@ int Intercalacao(char **registros, unsigned int memDisponivel, int numCaminhos, 
             rewind(fita[i]);
         }
 
-    for(i = 0; i < memDisponivel; i++)
-    {
-        GeraPeso(registros[i], numChars);
-    }
-
-
-    while(qtdRegistros < registrosTotais)    //Enquanto n„o for criado um bloco do tamanho do arquivo original
+    while(qtdRegistros < registrosTotais)    //Enquanto n√£o for criado um bloco do tamanho do arquivo original
     {
         qtdRegistros = 0;
 
@@ -214,12 +208,12 @@ int Intercalacao(char **registros, unsigned int memDisponivel, int numCaminhos, 
           //  if(fscanf(fita[i], "%s", registros[inicioLeitura-j]) != EOF)   //Se conseguir ler um registro de uma fita
             if(fgets(registros[inicioLeitura-j], numChars+2, fita[i]) != NULL)
             {
-                posicaoAtual[i] = 1;              //Posicao atual da fita lida È setado como 1
+                posicaoAtual[i] = 1;              //Posicao atual da fita lida √© setado como 1
                 atividade[i] = 1;                 //Seta a fita atual como ativa;
             }
             else
             {
-                //Gera um peso "infinito" para a posiÁ„o da fita no registro e seta a fita como inativa
+                //Gera um peso "infinito" para a posi√ß√£o da fita no registro e seta a fita como inativa
                 GeraPeso(registros[inicioLeitura-j], numChars);
                 atividade[i] = 0;
             }
@@ -235,28 +229,28 @@ int Intercalacao(char **registros, unsigned int memDisponivel, int numCaminhos, 
 
             //Armazena o menor registro em uma fita de saida
             fprintf(fita[posEscrita], "%s", registros[fitaComMenor]);
-            qtdRegistros++;   //Calcula o tamanho do bloco que est· sendo escrito
+            qtdRegistros++;   //Calcula o tamanho do bloco que est√° sendo escrito
 
             //Tenta ler um novo registro de onde o menor foi retirado
             posicaoAtual[fitaComMenor+inicioLeitura]++;
 
-            if(posicaoAtual[fitaComMenor+inicioLeitura] > tamanhoBloco)  //Verifica se j· leu um bloco inteiro
+            if(posicaoAtual[fitaComMenor+inicioLeitura] > tamanhoBloco)  //Verifica se j√° leu um bloco inteiro
             {
-                atividade[fitaComMenor+inicioLeitura] = 0;   // A fita È setada como inativa
+                atividade[fitaComMenor+inicioLeitura] = 0;   // A fita √© setada como inativa
 
                 //Gera um peso "infinito" para que o registro proveniente da fita inativa seja desconsiderado no insertion sort
                 GeraPeso(registros[fitaComMenor], numChars);
             }
             else
             {
-              //  if(fscanf(fita[fitaComMenor+inicioLeitura], "%s", aux) != EOF)  //Verifica se a fita j· acabou
+              //  if(fscanf(fita[fitaComMenor+inicioLeitura], "%s", aux) != EOF)  //Verifica se a fita j√° acabou
                 if(fgets(aux, numChars+2, fita[fitaComMenor+inicioLeitura])!=NULL)
                 {
-                    strcpy(registros[fitaComMenor], aux);       //Se n„o, armazena o registro lido
+                    strcpy(registros[fitaComMenor], aux);       //Se n√£o, armazena o registro lido
                 }
                 else
                 {
-                    atividade[fitaComMenor+inicioLeitura] = 0;       //Se sim, seta a fita como inativa e copia o mesmo peso "infinito" para a sua posiÁ„o no registro
+                    atividade[fitaComMenor+inicioLeitura] = 0;       //Se sim, seta a fita como inativa e copia o mesmo peso "infinito" para a sua posi√ß√£o no registro
                     GeraPeso(registros[fitaComMenor], numChars);
                 }
             }
@@ -268,7 +262,7 @@ int Intercalacao(char **registros, unsigned int memDisponivel, int numCaminhos, 
             break;
         }
 
-        if(posEscrita == fimEscrita)   //Se j· escreveu em todas as fitas reservadas para a escrita
+        if(posEscrita == fimEscrita)   //Se j√° escreveu em todas as fitas reservadas para a escrita
         {
             //Passa a ler das fitas de escrita e escrever nas de leitura
             inicioLeitura = inicioEscrita;
@@ -341,13 +335,13 @@ int tamanhoArquivo(FILE *arquivo, int numChars)
     fscanf(arquivo, "%d", &num);
     return i;
 }
-// Par‚metros:
+// Par√¢metros:
 //     - input_file: o nome do arquivo com os registros de entrada;
 //     - output_file: o nome do arquivo com os registros de entrada ordenados;
-//     - memory: o limite de memÛria a ser usado.
-// Essa funÁ„o dever· ler todos registros do arquivo `input_file`, orden·-los e
-// escrevÍ-los em `output_file`, usando memÛria menor ou igual a `memory`. Lembre-se
-// de fechar todos os arquivos que vocÍ usar por aqui!!
+//     - memory: o limite de mem√≥ria a ser usado.
+// Essa fun√ß√£o dever√° ler todos registros do arquivo `input_file`, orden√°-los e
+// escrev√™-los em `output_file`, usando mem√≥ria menor ou igual a `memory`. Lembre-se
+// de fechar todos os arquivos que voc√™ usar por aqui!!
 
 void external_sort(const char* input_file, const char* output_file, unsigned int memory) {
     FILE *inputFile = fopen(input_file, "r");
@@ -361,9 +355,9 @@ void external_sort(const char* input_file, const char* output_file, unsigned int
     {
         int numChars;
         fscanf(inputFile,"%d",&numChars);
-        //A memÛria disponÌvel ser· a quantidade de registros que eu consigo armazenar em RAM
+        //A mem√≥ria dispon√≠vel ser√° a quantidade de registros que eu consigo armazenar em RAM
         memory = memory * 1024;
-        unsigned int memDisponivel = floor((double)((memory)/(sizeof(char)*(numChars+2))));
+        unsigned int memDisponivel = floor((double)memory/(numChars+1));
 
         //Obtem o numero total de registros no arquivo
         int registrosTotais = tamanhoArquivo(inputFile, numChars);
@@ -371,20 +365,20 @@ void external_sort(const char* input_file, const char* output_file, unsigned int
         //Obtem o numero de caminhos
         numCaminhos = ceil(sqrt(ceil((double)registrosTotais/memDisponivel)));
 
-        //Cria um array de arquivos que ser„o utilizados como fitas magnÈticas
+        //Cria um array de arquivos que ser√£o utilizados como fitas magn√©ticas
         FILE **fita = malloc(sizeof(FILE*)*numCaminhos*2);
         CriaFitas(fita, numCaminhos);
 
-        //Cria o vetor que ir· armazenar os registros em RAM
+        //Cria o vetor que ir√° armazenar os registros em RAM
         char **registros;
         registros = mathias_malloc(memDisponivel*sizeof(char*));//malloc(memDisponivel*sizeof(char*));
         for(i=0; i<memDisponivel; i++)
         {
-            registros[i] = mathias_malloc((numChars+2)*sizeof(char));//malloc((numChars*sizeof(char))+1);
+            registros[i] = mathias_malloc(numChars+1);//malloc((numChars*sizeof(char))+1);
             GeraPeso(registros[i],numChars);
         }
 
-        //Fase inicial da intercalaÁ„o de f-caminhos, onde se cria blocos ordenados
+        //Fase inicial da intercala√ß√£o de f-caminhos, onde se cria blocos ordenados
         CriaBlocosOrdenados(registros, memDisponivel, numChars, numCaminhos, registrosTotais, inputFile, fita);
 
         //Obtem a fita que contem o arquivo ordenado
