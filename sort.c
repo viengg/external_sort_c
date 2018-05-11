@@ -105,9 +105,7 @@ void CriaBlocosOrdenados(char **registros, unsigned int memDisponivel, int numCh
     char *aux = malloc((sizeof(char)*numChars)+1);
 
     fgets(aux, numChars+2, inputFile); //Pula um \n
-
-   // while(fscanf(inputFile,"%[^\n]s",registros[j]) != EOF) //Enquanto não terminar de ler o arquivo original
-    while(fgets(registros[j], numChars+2, inputFile) != NULL)
+    while(fgets(registros[j], numChars+2, inputFile) != NULL)  //Enquanto não terminar de ler o arquivo original
     {
         if(i >= numCaminhos)   //Verifica se escreveu em todas as fitas disponíveis para a criação inicial dos blocos
         {
@@ -116,7 +114,6 @@ void CriaBlocosOrdenados(char **registros, unsigned int memDisponivel, int numCh
 
         for(j=1; j<memDisponivel; j++)   //Le os n-1 registros restantes, onde n é a quantidade de registros que cabe em RAM
         {
- //           if(fscanf(inputFile,"%[^\n]s",aux) != EOF)
             if(fgets(aux, numChars+2, inputFile) != NULL)
             {
                 strcpy(registros[j], aux);
@@ -127,8 +124,7 @@ void CriaBlocosOrdenados(char **registros, unsigned int memDisponivel, int numCh
             }
         }
 
-       // insertionSort(registros,memDisponivel,numChars); //Ordena os registros em RAM
-        qsort(registros, memDisponivel, sizeof(*registros), compare);
+        qsort(registros, memDisponivel, sizeof(*registros), compare); //Ordena os registros em RAM
 
         GeraPeso(aux, numChars);
         for(j=0; j<memDisponivel; j++)
@@ -179,7 +175,7 @@ int Intercalacao(char **registros, unsigned int memDisponivel, int numCaminhos, 
     int i, j, fitaComMenor, inicioLeitura, fimLeitura, posEscrita, inicioEscrita, fimEscrita, tamanhoBloco, tamanhoVetor;
     int *atividade = malloc(sizeof(int)*numCaminhos*2);
     int *posicaoAtual = malloc(sizeof(int)*numCaminhos*2);
-    int qtdRegistros; // int *qtaDeRegistros = malloc(sizeof(int)*memDisponivel*2);
+    int qtdRegistros;
     char *aux = malloc((sizeof(char)*numChars)+1);
 
     inicioLeitura = 0;
@@ -195,6 +191,11 @@ int Intercalacao(char **registros, unsigned int memDisponivel, int numCaminhos, 
         {
             rewind(fita[i]);
         }
+
+    for(i=0; i< memDisponivel; i++)
+    {
+        GeraPeso(registros[i], numChars);
+    }
 
     while(qtdRegistros < registrosTotais)    //Enquanto não for criado um bloco do tamanho do arquivo original
     {
@@ -311,7 +312,6 @@ void copiaArquivo(const char *nomeArquivo, int numChars, FILE *fita[], int regis
 
     for(i=0; i < registrosTotais; i++)
     {
-       // fscanf(fita[pos], "%s", aux);
         fgets(aux, numChars+2, fita[pos]);
         fprintf(arquivo, "%s", aux);
     }
@@ -326,7 +326,6 @@ int tamanhoArquivo(FILE *arquivo, int numChars)
     char *aux = malloc((sizeof(char)*numChars)+1);
     fgets(aux, numChars+2, arquivo);
 
-   // while(fscanf(arquivo, "%s", aux) != EOF)
     while(fgets(aux, numChars+2, arquivo)!=NULL)
     {
         i++;
@@ -372,10 +371,15 @@ void external_sort(const char* input_file, const char* output_file, unsigned int
 
         //Cria o vetor que irá armazenar os registros em RAM
         char **registros;
-        registros = mathias_malloc(memDisponivel*sizeof(char*));//malloc(memDisponivel*sizeof(char*));
+
+        if(memDisponivel > registrosTotais)
+        {
+            memDisponivel = registrosTotais;
+        }
+        registros = mathias_malloc(memDisponivel*sizeof(char*));
         for(i=0; i<memDisponivel; i++)
         {
-            registros[i] = mathias_malloc(numChars+2);//malloc((numChars*sizeof(char))+1);
+            registros[i] = mathias_malloc(numChars+1);
             GeraPeso(registros[i],numChars);
         }
 
