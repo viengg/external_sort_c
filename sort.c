@@ -356,8 +356,9 @@ void external_sort(const char* input_file, const char* output_file, unsigned int
         int numChars;
         fscanf(inputFile,"%d",&numChars);
         //A memória disponível será a quantidade de registros que eu consigo armazenar em RAM
-        memory = memory * 1024;
-        unsigned int memDisponivel = floor((double)memory/(numChars+1));
+        unsigned int memDisponivel = floor((double)(memory*1024)/(numChars+2));
+
+        memDisponivel = floor((double)memDisponivel * 0.8);
 
         //Obtem o numero total de registros no arquivo
         int registrosTotais = tamanhoArquivo(inputFile, numChars);
@@ -374,7 +375,7 @@ void external_sort(const char* input_file, const char* output_file, unsigned int
         registros = mathias_malloc(memDisponivel*sizeof(char*));//malloc(memDisponivel*sizeof(char*));
         for(i=0; i<memDisponivel; i++)
         {
-            registros[i] = mathias_malloc(numChars+1);//malloc((numChars*sizeof(char))+1);
+            registros[i] = mathias_malloc(numChars+2);//malloc((numChars*sizeof(char))+1);
             GeraPeso(registros[i],numChars);
         }
 
